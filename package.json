@@ -1,0 +1,93 @@
+{
+  "name": "{{PACKAGE_NAME}}",
+  "version": "1.0.0",
+  "description": "{{DESCRIPTION}}",
+  "main": "dist/main/index.js",
+  "typings": "dist/main/index.d.ts",
+  "module": "dist/module/index.js",
+  "homepage": "https://github.com/{{USER_NAME}}/{{PACKAGE_NAME}}#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/{{USER_NAME}}/{{PACKAGE_NAME}}.git"
+  },
+  "bugs": {
+    "url": "https://github.com/{{USER_NAME}}/{{PACKAGE_NAME}}/issues"
+  },
+  "keywords": [
+  ],
+  "files": [
+    "!**/*.json",
+    "!**/*.spec.*",
+    "!**/*.tsbuildinfo",
+    "LICENSE",
+    "README.md",
+    "dist/main",
+    "dist/module"
+  ],
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "license": "MIT",
+  "jest": {
+    "moduleDirectories": [
+      "<rootDir>/../",
+      "node_modules"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "preset": "ts-jest",
+    "reporters": [
+      "default",
+      "jest-html-reporter"
+    ],
+    "rootDir": "./src",
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.ts$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.json"
+        }
+      ]
+    }
+  },
+  "jest-html-reporter": {
+    "includeConsoleLog": true,
+    "includeFailureMsg": true,
+    "includeStackTrace": false
+  },
+  "scripts": {
+    "build": "npm run clean && npm run lint && npm run test:coverage && npm run build:main && npm run build:module",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json",
+    "clean": "rimraf dist coverage test-report.html",
+    "lint": "eslint --fix src/**/*.ts",
+    "test": "jest --reporters=default",
+    "test:html": "jest --reporters=jest-html-reporter --verbose=false",
+    "test:coverage": "jest --coverage --coverageDirectory=../coverage",
+    "watch:build": "tsc -p tsconfig.json -w",
+    "watch:test": "jest --watch --reporters=default",
+    "watch:test:html": "jest --watch --reporters=jest-html-reporter --verbose=false"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.8",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "eslint": "^8.46.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-functional": "^6.0.0",
+    "eslint-plugin-import": "^2.28.0",
+    "jest": "^29.6.2",
+    "jest-html-reporter": "^3.10.1",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
